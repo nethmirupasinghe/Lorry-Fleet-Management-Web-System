@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lorry Fleet Management System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+     #entranceScreen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #0B2545;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+  }
+
+  .entranceContent {
+    text-align: center;
+    color: #FFFFFF;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeSlideIn 1s forwards;
+  }
+
+  #entranceScreen h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 40px;
+  }
+
+  #enterBtn {
+    background-color: #17BEBB;
+    border: none;
+    color: #0B2545;
+    padding: 15px 45px;
+    font-size: 1.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 0 10px #17BEBB99;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  #enterBtn:hover {
+    box-shadow: 0 0 25px #17BEBBcc;
+    transform: scale(1.05);
+  }
+
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --light-color: #ecf0f1;
+      --dark-color: #2c3e50;
+      --success-color: #27ae60;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+  
+    body {
+  font-family: 'Roboto', sans-serif;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Tea_factory%2C_Tukuyu_%282486303150%29.jpg/1200px-Tea_factory%2C_Tukuyu_%282486303150%29.jpg?20121101063446') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: var(--dark-color);
+}
+
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease;
+    }
+    
+    .header {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 25px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      margin: 0;
+    }
+    
+    .header i {
+      font-size: 32px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .content {
+      padding: 30px;
+    }
+    
+    .search-section {
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .search-section label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--primary-color);
+    }
+    
+    .select-wrapper {
+      position: relative;
+    }
+    
+    .select-wrapper::after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      color: var(--primary-color);
+      pointer-events: none;
+    }
+    
+    select {
+      width: 100%;
+      padding: 14px 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      appearance: none;
+      background-color: white;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    
+    select:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+    
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+      background-color: var(--secondary-color);
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    button:hover {
+      background-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    .output {
+      margin-top: 30px;
+      border-radius: 8px;
+      background: white;
+      color: var(--dark-color);
+      font-size: 15px;
+      border: 1px solid #e0e0e0;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: none;
+    }
+    
+    .output-header {
+      background: var(--primary-color);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .output-header h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      margin: 0;
+    }
+    
+    .output-header i {
+      font-size: 20px;
+    }
+    
+    .output-content {
+      padding: 20px;
+    }
+    
+    .output-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .output-table tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    
+    .output-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e9ecef;
+      vertical-align: top;
+    }
+    
+    .output-table td:first-child {
+      font-weight: 500;
+      width: 40%;
+      color: var(--primary-color);
+    }
+    
+    .no-data {
+      text-align: center;
+      padding: 30px;
+      color: var(--accent-color);
+      font-weight: 500;
+    }
+    
+    .no-data i {
+      font-size: 40px;
+      margin-bottom: 15px;
+      display: block;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 10px;
+      }
+      
+      .container {
+        border-radius: 8px;
+      }
+      
+      .header {
+        padding: 20px;
+      }
+      
+      .content {
+        padding: 20px;
+      }
+      
+      .output-table td {
+        padding: 10px;
+        font-size: 14px;
+      }
+    }
+    
+    /* Status indicator */
+    .status-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .status-active {
+      background-color: var(--success-color);
+    }
+    
+    .status-inactive {
+      background-color: var(--accent-color);
+    }
+    
+    /* Floating action button */
+    .fab {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--accent-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 100;
+    }
+    
+    .fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div id="entranceScreen">
+  <div class="entranceContent">
+    <h1>Welcome to Ceciliyan Tea Factory Lorry System</h1>
+    <button id="enterBtn">Enter</button>
+  </div>
+</div>
+  <div class="container">
+    <div class="header">
+      <h2><i class="fas fa-truck"></i> Lorry Fleet Management</h2>
+      <i class="fas fa-database"></i>
+    </div>
+    
+    <div class="content">
+      <div class="search-section">
+        <label for="regNumber">Select Vehicle Registration Number</label>
+        <div class="select-wrapper">
+          <select id="regNumber">
+            <option value="">-- Select Registration Number --</option>
+            <option value="LL-5956">LL-5956</option>
+            <option value="226-8870">226-8870</option>
+            <option value="GG-5385">GG-5385</option>
+            <option value="JL-2522">JL-2522</option>
+            <option value="JS-4572">JS-4572</option>
+            <option value="LB-5189">LB-5189</option>
+            <option value="LL-0288">LL-0288</option>
+            <option value="LE-3647">LE-3647</option>
+            <option value="LE-6904">LE-6904</option>
+            <option value="LE-8275">LE-8275</option>
+            <option value="LF-3893">LF-3893</option>
+            <option value="LF-7701">LF-7701</option>
+            <option value="LF-7702">LF-7702</option>
+            <option value="LH-9039">LH-9039</option>
+            <option value="LL-4442">LL-4442</option>
+            <option value="LG-7067">LG-7067</option>
+            <option value="LG-6965">LG-6965</option>
+            <option value="LH-0915">LH-0915</option>
+            <option value="LH-9782">LH-9782</option>
+            <option value="LJ-0935">LJ-0935</option>
+            <option value="LK-3510">LK-3510</option>
+            <option value="LK-3974">LK-3974</option>
+            <option value="LK-6404">LK-6404</option>
+            <option value="LK-6711">LK-6711</option>
+            <option value="DAC-3773">DAC-3773</option>
+            <option value="GJ-8656">GJ-8656</option>
+            <option value="LL-4644">LL-4644</option>
+            <option value="LL-4757">LL-4757</option>
+            <option value="253-5955">253-5955</option>
+            <option value="DAC-9324">DAC-9324</option>
+            <option value="DAE-6861">DAE-6861</option>
+            <option value="LN-2794">LN-2794</option>
+            <option value="HR-4131">HR-4131</option>
+            <option value="LN-5364">LN-5364</option>
+            <option value="LC-2323">LC-2323</option>
+            <option value="LG-4534">LG-4534</option>
+            <option value="LD-9851">LD-9851</option>
+            <option value="DAA-9884">DAA-9884</option>
+            <option value="GE-3528">GE-3528</option>
+            <option value="LF-8342">LF-8342</option>
+            <option value="GT-2500">GT-2500</option>
+            <option value="LB-1830">LB-1830</option>
+            <option value="LI-5903">LI-5903</option>
+            <option value="LJ-3670">LJ-3670</option>
+            <option value="LP-4246">LP-4246</option>
+            <option value="LD-7909">LD-7909</option>
+          </select>
+        </div>
+        
+        <button onclick="getLorryDetails()">
+          <i class="fas fa-search"></i> Search Vehicle
+        </button>
+      </div>
+      
+      <div class="output" id="lorryDetails">
+        <div class="output-header">
+          <h3>Vehicle Details</h3>
+          <i class="fas fa-truck-pickup"></i>
+        </div>
+        <div class="output-content" id="outputContent">
+          <!-- Content will be inserted here dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="fab" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    const enterBtn = document.getElementById('enterBtn');
+  const entranceScreen = document.getElementById('entranceScreen');
+
+  enterBtn.addEventListener('click', () => {
+    entranceScreen.style.transition = 'opacity 0.6s ease';
+    entranceScreen.style.opacity = '0';
+
+    setTimeout(() => {
+      entranceScreen.style.display = 'none';
+      // Show your main select content here
+      const mainContent = document.getElementById('selectPage') || document.getElementById('mainContent');
+      if(mainContent) {
+        mainContent.style.display = 'block';
+      }
+    }, 600);
+  });
+    const lorryData = {
+            "LL-5956": {
+        lorryRegistrationNumber: "LL-5956",
+        make: "ISUZU",
+        model: "BDG-NPS85AN4WD",
+        yearOfManufacture: "2008",
+        fuelType: "DIESEL",
+        engineNo: "4JJ1-754951",
+        chassisNo: "NPS85-7000556",
+        licenseNumber:"SG A 5999020",
+        dateOfPurchase:"07/02/2024",
+        purchaseCost:"5,805,600.00",
+        marketValue:"8,200,000.00",
+        transferedDate:"25/02/2025",
+        bookvalue:"5,594,848.7671233"
+      },
+      "226-8870":{
+        lorryRegistrationNumber: "226-8870",
+        make: "ISUZU",
+        model: "",
+        yearOfManufacture: "1996",
+        fuelType: "DIESEL",
+        engineNo: "4HFI-372749",
+        chassisNo: "NKR66L-7411758",
+        licenseNumber:"SG A 5564247",
+        dateOfPurchase:"21/06/1999",
+        purchaseCost:"950,000.00",
+        marketValue:"-",
+        transferedDate:"12/01/2000",
+        bookvalue:"0.00000000017"
+      },
+      "GG-5385":{
+        lorryRegistrationNumber: "GG-5385",
+        make: "ISUZU",
+        model: "ELF",
+        yearOfManufacture: "1996",
+        fuelType: "DIESEL",
+        engineNo: "4HF1-348581",
+        chassisNo: "NKR66L-7411758",
+        licenseNumber:"28080288",
+        dateOfPurchase:"05/09/2001",
+        purchaseCost:"1075000.00",
+        marketValue:"3,500,000.00",
+        transferedDate:"22/05/2001",
+        bookvalue:"0.00000005244"
+      },
+      "JL-2522":{
+        lorryRegistrationNumber: "JL-2522",
+        make: "ISUZU",
+        model: "NKR55L",
+        yearOfManufacture: "2004",
+        fuelType: "DIESEL",
+        engineNo: "4J61-159504",
+        chassisNo: "JAANKR55L47100345",
+        licenseNumber:"SG 5569008",
+        dateOfPurchase:"11/03/2004",
+        purchaseCost:"1,800,000.00",
+        marketValue:"-",
+        transferedDate:"03/11/2004",
+        bookvalue:"0.00000040366"
+      },
+      "JS-4572":{
+        lorryRegistrationNumber: "JS-4572",
+        make: "ISUZU",
+        model: "DUMP TRUCK",
+        yearOfManufacture: "2000",
+        fuelType: "DIESEL",
+        engineNo: "4HF1-772755",
+        chassisNo: "NKR66E-7557469",
+        licenseNumber:"SG A 5998908",
+        dateOfPurchase:"22/02/2025",
+        purchaseCost:"2,125,000.00",
+        marketValue:"-",
+        transferedDate:"22/02/2005",
+        bookvalue:"20,71,147.260274"
+      },
+      "LB-5189":{
+        lorryRegistrationNumber: "LB-5189",
+        make: "MITSUBISHI",
+        model: "FG635E6R",
+        yearOfManufacture: "2006",
+        fuelType: "DIESEL",
+        engineNo: "4D32K78492",
+        chassisNo: "FG635E A40328",
+        licenseNumber:"SG A 6001108",
+        dateOfPurchase:"19/05/2006",
+        purchaseCost:"2,239,130.00",
+        marketValue:"6,000,000.00",
+        transferedDate:"19/05/2006",
+        bookvalue:"0.00000638282"
+      },
+      "LL-0288":{
+        lorryRegistrationNumber: "LL-0288",
+        make: "MITSUBISHI",
+        model: "FG635E6R",
+        yearOfManufacture: "2011",
+        fuelType: "DIESEL",
+        engineNo: "4D34M96917",
+        chassisNo: "FG83PE A20232",
+        licenseNumber:"SG A 5567825",
+        dateOfPurchase:"11/07/2013",
+        purchaseCost:"4,800,000.00",
+        marketValue:"6,500,000.00",
+        transferedDate:"31/10/2013",
+        bookvalue:"0.23456468973"
+      },
+      "LE-3647":{
+        lorryRegistrationNumber: "LE-3647",
+        make: "MITSUBISHI",
+        model: "CANTER FG535B4R",
+        yearOfManufacture: "2007",
+        fuelType: "DIESEL",
+        engineNo: "4D32L60758",
+        chassisNo: "FG535BA40243",
+        licenseNumber:"SG A 5567826",
+        dateOfPurchase:"24/10/2007",
+        purchaseCost:"2,675,000.00",
+        marketValue:"5,500,000.00",
+        transferedDate:"24/10/2007",
+        bookvalue:"0.00003471379"
+      },
+      "LE-6904":{
+        lorryRegistrationNumber: "LE-6904",
+        make: "MITSUBISHI",
+        model: "FE535E4R",
+        yearOfManufacture: "2007",
+        fuelType: "DIESEL",
+        engineNo: "4D32L70697",
+        chassisNo: "FE535E A43852",
+        licenseNumber:"SG A 5570724",
+        dateOfPurchase:"27/12/2007",
+        purchaseCost:"2,095,000.00",
+        marketValue:"4,000,000.00",
+        transferedDate:"27/12/2007",
+        bookvalue:"0.00002852344"  
+      },
+      "LE-8275":{
+        lorryRegistrationNumber: "LE-8275",
+        make: "MITSUBISHI",
+        model: "CANTER FG535B4R",
+        yearOfManufacture: "2007",
+        fuelType: "DIESEL",
+        engineNo: "4D32L80176",
+        chassisNo: "FG535B A40284",
+        licenseNumber:"SG A 5571709",
+        dateOfPurchase:"28/01/2008",
+        purchaseCost:"2,835,000.00",
+        marketValue:"5,000,000.00",
+        transferedDate:"28/01/2008",
+        bookvalue:"0.00015801107" 
+      },
+      "LF-3893":{
+        lorryRegistrationNumber: "LF-3893",
+        make: "MITSUBISHI",
+        model: "FG635E6R",
+        yearOfManufacture: "2008",
+        fuelType: "DIESEL",
+        engineNo: "4D32L90725",
+        chassisNo: "FG635E A40451",
+        licenseNumber:"SG A 5381408",
+        dateOfPurchase:"06/04/2008",
+        purchaseCost:"3,015,000.00",
+        marketValue:"6,000,000.00",
+        transferedDate:"04/06/2008",
+        bookvalue:"0.0001323433"
+      },
+      "LF-7701":{
+        lorryRegistrationNumber: "LF-7701",
+        make: "MITSUBISHI",
+        model: "CANTER FG535B4R",
+        yearOfManufacture: "2008",
+        fuelType: "DIESEL",
+        engineNo: "4D32L99151",
+        chassisNo: "FG535B A40308",
+        licenseNumber:"SG A 5566679",
+        dateOfPurchase:"09/09/2008",
+        purchaseCost:"2,910,000.00",
+        marketValue:"5,500,000.00",
+        transferedDate:"09/09/2008",
+        bookvalue:"0.00014583291" 
+      },
+      "LF-7702":{
+        lorryRegistrationNumber: "LF-7702",
+        make: "MITSUBISHI",
+        model: "CANTER FG535B4R",
+        yearOfManufacture: "2008",
+        fuelType: "DIESEL",
+        engineNo: "4D32L99100",
+        chassisNo: "FG535B A40305",
+        licenseNumber:"SG A 5566677",
+        dateOfPurchase:"09/09/2008",
+        purchaseCost:"2,910,000.00",
+        marketValue:"5,500,000.00",
+        transferedDate:"09/09/2008",
+        bookvalue:"0.00014583291"
+      },
+      "LH-9039":{
+        lorryRegistrationNumber: "LH-9039",
+        make: "ISUZU",
+        model: "PB-NKS81N",
+        yearOfManufacture: "2005",
+        fuelType: "DIESEL",
+        engineNo: "4HL1-244901",
+        chassisNo: "NKS81-7001455",
+        licenseNumber:"SG A 5571710",
+        dateOfPurchase:"11/07/2018",
+        purchaseCost:"4,565,952.14",
+        marketValue:"5,500,000.00",
+        transferedDate:"24/01/2011",
+        bookvalue:"259.213925967"
+      },
+      "LL-4442":{
+        lorryRegistrationNumber: "LL-4442",
+        make: "LANKA ASHOK LEYLAND",
+        model: "TU8KER8UPER1613",
+        yearOfManufacture: "2014",
+        fuelType: "DIESEL",
+        engineNo: "EXHZ417741",
+        chassisNo: "MBIA3KWC5ERXK1290",
+        licenseNumber:"SG A 5568301",
+        dateOfPurchase:"01/09/2014",
+        purchaseCost:"4,087,500.00",
+        marketValue:"6,000,000.00",
+        transferedDate:"20/10/2014",
+        bookvalue:"0.83369547372"
+      },
+      "LG-7067":{
+        lorryRegistrationNumber: "LG-7067",
+        make: "ISUZU",
+        model: "NKR66L",
+        yearOfManufacture: "2008",
+        fuelType: "DIESEL",
+        engineNo: "4HF1-705774",
+        chassisNo: "JAANKR66L87101000",
+        licenseNumber:"SG A 5568089",
+        dateOfPurchase:"11/03/2009",
+        purchaseCost:"3,040,028.50",
+        marketValue:"3,500,000.00",
+        transferedDate:"04/11/2009",
+        bookvalue:"0.00069811574"
+      },
+      "LG-6965":{
+        lorryRegistrationNumber: "LG-6965",
+        make: "ISUZU",
+        model: "NQR71L",
+        yearOfManufacture: "2009",
+        fuelType: "DIESEL",
+        engineNo: "4HG1-740691",
+        chassisNo: "JAANIR71L97100107",
+        licenseNumber:"SG A 5567644",
+        dateOfPurchase:"29/10/2009",
+        purchaseCost:"4,167,195.20",
+        marketValue:"5,500,000.00",
+        transferedDate:"30/10/2009",
+        bookvalue:"0.08685737794"
+      },
+      "LH-0915":{
+        lorryRegistrationNumber: "LH-0915",
+        make: "ISUZU",
+        model: "NMR71H",
+        yearOfManufacture: "2009",
+        fuelType: "DIESEL",
+        engineNo: "4HG1-768003",
+        chassisNo: "JAANMR71H97100049",
+        licenseNumber:"SG A 5998102",
+        dateOfPurchase:"23/02/2010",
+        purchaseCost:"3,601,676.00",
+        marketValue:"4,000,000.00",
+        transferedDate:"09/03/2010",
+        bookvalue:"0.00327161285"
+      },
+      "LH-9782":{
+        lorryRegistrationNumber: "LH-9782",
+        make: "ISUZU",
+        model: "NMR71H",
+        yearOfManufacture: "2010",
+        fuelType: "DIESEL",
+        engineNo: "4HG1-863373",
+        chassisNo: "JAANMR71HA7100085",
+        licenseNumber:"SG A 5998099",
+        dateOfPurchase:"02/11/2011",
+        purchaseCost:"3,872,950.08",
+        marketValue:"4,000,000.00",
+        transferedDate:"14/02/2011",
+        bookvalue:"0.01295543072"
+      },
+      "LJ-0935":{
+        lorryRegistrationNumber: "LJ-0935",
+        make: "MITSUBISHI",
+        model: "FG83PE6R",
+        yearOfManufacture: "2011",
+        fuelType: "DIESEL",
+        engineNo: "4D34M9Z906",
+        chassisNo: "FG83PEA20184",
+        licenseNumber:"SG A 5569892",
+        dateOfPurchase:"12/12/2011",
+        purchaseCost:"5,350,000.32",
+        marketValue:"6,500,000.00",
+        transferedDate:"12/12/2011",
+        bookvalue:"0.01844235572"
+      },
+      "LK-3510":{
+        lorryRegistrationNumber: "LK-3510",
+        make: "MITSUBISHI",
+        model: "CANTER-FG83PE6R",
+        yearOfManufacture: "2011",
+        fuelType: "DIESEL",
+        engineNo: "4D34-M93793",
+        chassisNo: "FG83PEA20212",
+        licenseNumber:"SG A 5567672",
+        dateOfPurchase:"15/10/2012",
+        purchaseCost:"4,939,461.76",
+        marketValue:"6,500,000.00",
+        transferedDate:"15/10/2012",
+        bookvalue:"0.06518466072"
+      },
+      "LK-3974":{
+        lorryRegistrationNumber: "LK-3974",
+        make: "ISUZU",
+        model: "NQR71L",
+        yearOfManufacture: "2012",
+        fuelType: "DIESEL",
+        engineNo: "4HG1-016906",
+        chassisNo: "JAANIR71LC7100161",
+        licenseNumber:"SG A 5569437",
+        dateOfPurchase:"24/10/2012",
+        purchaseCost:"5,092,640.00",
+        marketValue:"6,000,000.00",
+        transferedDate:"09/11/2012",
+        bookvalue:"0.06767390198"
+      },
+      "LK-6404":{
+        lorryRegistrationNumber: "LK-6404",
+        make: "MITSUBISHI",
+        model: "FG83PE6R",
+        yearOfManufacture: "2011",
+        fuelType: "DIESEL",
+        engineNo: "4D34-M97700",
+        chassisNo: "FG83PEA20243",
+        licenseNumber:"SG A 5998101",
+        dateOfPurchase:"28/02/2013",
+        purchaseCost:"5,149,900.80",
+        marketValue:"6,500,000.00",
+        transferedDate:"28/02/2013",
+        bookvalue:"0.30044040627"
+      },
+      "LK-6711":{
+        lorryRegistrationNumber: "LK-6711",
+        make: "MITSUBISHI",
+        model: "FE83PE6R-FUSO",
+        yearOfManufacture: "2012",
+        fuelType: "DIESEL",
+        engineNo: "4D34 N25312",
+        chassisNo: "FE83PEA21749",
+        licenseNumber:"SG A 5999021",
+        dateOfPurchase:"19/03/2013",
+        purchaseCost:"4,300,000.00",
+        marketValue:"5,000,000.00",
+        transferedDate:"18/03/2013",
+        bookvalue:"0.25419339741"
+      },
+      "DAC-3773":{
+        lorryRegistrationNumber: "DAC-3773",
+        make: "MAHINDRA",
+        model: "BOLERO PIK UP",
+        yearOfManufacture: "2015",
+        fuelType: "DIESEL",
+        engineNo: "GHF1K53331",
+        chassisNo: "MA1ZC4GHKF1K73654",
+        licenseNumber:"SG A 5569746",
+        dateOfPurchase:"28/12/2021",
+        purchaseCost:"2,600,000.00",
+        marketValue:"2,200,000.00",
+        transferedDate:"15/09/2022",
+        bookvalue:"9509.31078767"
+      },
+      "GJ-8656":{
+        lorryRegistrationNumber: "GJ-8656",
+        make: "ISUZU",
+        model: "ELF 250",
+        yearOfManufacture: "1997",
+        fuelType: "DIESEL",
+        engineNo: "4HF1-483111",
+        chassisNo: "NKR66E-7503268",
+        licenseNumber:"SG A 5567942",
+        dateOfPurchase:"31/07/2016",
+        purchaseCost:"4,252,565.71",
+        marketValue:"-",
+        transferedDate:"25/06/2014",
+        bookvalue:"13.5222460316"
+      },
+      "LL-4644":{
+        lorryRegistrationNumber: "LL-4644",
+        make: "ISUZU",
+        model: "NPS71HE /OPEN",
+        yearOfManufacture: "2014",
+        fuelType: "DIESEL",
+        engineNo: "4HG1-251540",
+        chassisNo: "JAANPS71HE7100128",
+        licenseNumber:"SG A 5568874",
+        dateOfPurchase:"01/10/2014",
+        purchaseCost:"6,872,611.62",
+        marketValue:"7,500,000.00",
+        transferedDate:"05/11/2014",
+        bookvalue:"1.43542196031"
+      },
+      "LL-4757":{
+        lorryRegistrationNumber: "LL-4757",
+        make: "ISUZU",
+        model: "NPS71H",
+        yearOfManufacture: "2014",
+        fuelType: "DIESEL",
+        engineNo: "4HG1-223065",
+        chassisNo: "JAANPS71HE7100089",
+        licenseNumber:"SG A 5568875",
+        dateOfPurchase:"01/10/2014",
+        purchaseCost:"6,872,611.62",
+        marketValue:"7,500,000.00",
+        transferedDate:"18/11/2014",
+        bookvalue:"1.43542196031"
+      },
+      "253-5955":{
+        lorryRegistrationNumber: "253-5955",
+        make: "TOYOTA",
+        model: "CR41R-PRMRS",
+        yearOfManufacture: "1999",
+        fuelType: "DIESEL",
+        engineNo: "2C-3805725",
+        chassisNo: "CR41-0027078",
+        licenseNumber:"SG A 5567627",
+        dateOfPurchase:"13/10/2024",
+        purchaseCost:"800,000.00",
+        marketValue:"3,500,000.00",
+        transferedDate:"28/07/2005",
+        bookvalue:"176849.315068"
+      },
+      "DAC-9324":{
+        lorryRegistrationNumber: "DAC-9324",
+        make: "MAHINDRA",
+        model: "BM T PLUS MDI",
+        yearOfManufacture: "2016",
+        fuelType: "DIESEL",
+        engineNo: "GLG4A56325",
+        chassisNo: "MAIZT2GLKG2A54246",
+        licenseNumber:"SG A 5999022",
+        dateOfPurchase:"03/04/2016",
+        purchaseCost:"1,560,000.00",
+        marketValue:"2,000,000.00",
+        transferedDate:"04/03/2016",
+        bookvalue:"17.9016949379"
+      },
+      "DAE-6861":{
+        lorryRegistrationNumber: "DAE-6861",
+        make: "MAHINDRA",
+        model: "BOLERO PICK UP",
+        yearOfManufacture: "2016",
+        fuelType: "DIESEL",
+        engineNo: "GHG1K49960",
+        chassisNo: "MA1ZC4GHKG1K74964",
+        licenseNumber:"SG A 5569120",
+        dateOfPurchase:"11/08/2016",
+        purchaseCost:"1,947,500.00",
+        marketValue:"1,800,000.00",
+        transferedDate:"17/11/2016",
+        bookvalue:"6.24860476135"
+      },
+      "LN-2794":{
+        lorryRegistrationNumber: "LN-2794",
+        make: "ISUZU",
+        model: "NPR71H",
+        yearOfManufacture: "2017",
+        fuelType: "DIESEL",
+        engineNo: "4HG1-627872",
+        chassisNo: "JAANPR71HH7101410",
+        licenseNumber:"SG A 5567155",
+        dateOfPurchase:"17/08/2017",
+        purchaseCost:"4,950,000.00",
+        marketValue:"6,500,000.00",
+        transferedDate:"25/09/2017",
+        bookvalue:"63.8392200205"
+      },
+      "HR-4131":{
+        lorryRegistrationNumber: "HR-4131",
+        make: "MITSUBISHI",
+        model: "KC-FO53EE",
+        yearOfManufacture: "1999",
+        fuelType: "DIESEL",
+        engineNo: "4D35-G45038",
+        chassisNo: "FG538E-430282",
+        licenseNumber:"SG A 5571203",
+        dateOfPurchase:"27/11/2017",
+        purchaseCost:"2,225,000.00",
+        marketValue:"4,000,000.00",
+        transferedDate:"29/08/2018",
+        bookvalue:"31.06731258"
+      },
+      "LN-5364":{
+        lorryRegistrationNumber: "LN-5364",
+        make: "ISUZU",
+        model: "KR-NKS81GRELF",
+        yearOfManufacture: "2002",
+        fuelType: "DIESEL",
+        engineNo: "4HL1-933066",
+        chassisNo: "NKS81G7000204",
+        licenseNumber:"SG A 5570600",
+        dateOfPurchase:"27/12/2017",
+        purchaseCost:"6,900,000.00",
+        marketValue:"6,000,000.00",
+        transferedDate:"28/12/2017",
+        bookvalue:"98.5069797455"
+      },
+      "LC-2323":{
+        lorryRegistrationNumber: "LC-2323",
+        make: "ISUZU",
+        model: "KC-NKR66LV",
+        yearOfManufacture: "2000",
+        fuelType: "DIESEL",
+        engineNo: "4HF1-6402690",
+        chassisNo: "NKR66L7426734",
+        licenseNumber:"SG A 5567673",
+        dateOfPurchase:"14/02/2018",
+        purchaseCost:"2,750,000.00",
+        marketValue:"3,500,000.00",
+        transferedDate:"16/02/2018",
+        bookvalue:"162.67332312"
+      },
+      "LG-4534":{
+        lorryRegistrationNumber: "LG-4534",
+        make: "MITSUBISHI",
+        model: "CANTER FG535B4R",
+        yearOfManufacture: "2008",
+        fuelType: "DIESEL",
+        engineNo: "4D32L96877",
+        chassisNo: "FG535BA40294",
+        licenseNumber:"SG A 5565027",
+        dateOfPurchase:"28/11/2019",
+        purchaseCost:"4,850,000.00",
+        marketValue:"4,500,000.00",
+        transferedDate:"02/06/2020",
+        bookvalue:"1084.32717519"
+      },
+      "LD-9851":{
+        lorryRegistrationNumber: "LD-9884",
+        make: "MITSUBISHI",
+        model: "FG535B4R",
+        yearOfManufacture: "2007",
+        fuelType: "DIESEL",
+        engineNo: "4D32L23467",
+        chassisNo: "FG535BA40124",
+        licenseNumber:"SG A 5565594",
+        dateOfPurchase:"01/01/2019",
+        purchaseCost:"250,000.00",
+        marketValue:"4,500,000.00",
+        transferedDate:"17/09/2020",
+        bookvalue:"57.3145200129"
+      },
+      "DAA-9884":{
+        lorryRegistrationNumber: "DAA-9884",
+        make: "MAHINDRA",
+        model: "BMT PLUS MDI",
+        yearOfManufacture: "2015",
+        fuelType: "DIESEL",
+        engineNo: "GLF4D66926",
+        chassisNo: "MA1ZT2GLKF2D68796",
+        licenseNumber:"SG A 5381785",
+        dateOfPurchase:"07/10/2020",
+        purchaseCost:"2,000,000.00",
+        marketValue:"2,200,000.00",
+        transferedDate:"16/06/2021",
+        bookvalue:"1719.0175513699"
+      },
+      "GE-3528":{
+        lorryRegistrationNumber: "GE-3528",
+        make: "MITSUBISHI",
+        model: "CANTER",
+        yearOfManufacture: "1995",
+        fuelType: "DIESEL",
+        engineNo: "4D35-EZ9141",
+        chassisNo: "FG538E-420093",
+        licenseNumber:"SG A 5571950",
+        dateOfPurchase:"01/01/2019",
+        purchaseCost:"250,000.00",
+        marketValue:"4,500,000.00",
+        transferedDate:"09/09/2020",
+        bookvalue:"57.3145200129"
+      },
+      "LF-8342":{
+        lorryRegistrationNumber: "LF-8342",
+        make: "MITSUBISHI",
+        model: "KK-FE73EC CANTER",
+        yearOfManufacture: "2003",
+        fuelType: "DIESEL",
+        engineNo: "4M51-A93045",
+        chassisNo: "FE73EC500527",
+        licenseNumber:"SG A 5567156",
+        dateOfPurchase:"22/01/2021",
+        purchaseCost:"3,725,000.00",
+        marketValue:"4,500,000.00",
+        transferedDate:"23/06/2021",
+        bookvalue:"13873.073630138"
+      },
+      "GT-2500":{
+        lorryRegistrationNumber: "GT-2500",
+        make: "MITSUBISHI",
+        model: "CANTER",
+        yearOfManufacture: "1997",
+        fuelType: "DIESEL",
+        engineNo: "4D35-F28595",
+        chassisNo: "FG538B-430097",
+        licenseNumber:"SG A 5566678",
+        dateOfPurchase:"15/08/2022",
+        purchaseCost:"5,500,000.00",
+        marketValue:"5,000,000.00",
+        transferedDate:"27/11/2023",
+        bookvalue:"72517.123287675"
+      },
+      "LB-1830":{
+        lorryRegistrationNumber: "LB-1830",
+        make: "MITSUBISHI",
+        model: "KK-FE50CBT",
+        yearOfManufacture: "2001",
+        fuelType: "DIESEL",
+        engineNo: "4D33-H63158",
+        chassisNo: "FE50CBT560129",
+        licenseNumber:"SG A 5140467",
+        dateOfPurchase:"17/12/2022",
+        purchaseCost:"3,700,000.00",
+        marketValue:"4,000,000.00",
+        transferedDate:"19/07/2023",
+        bookvalue:"53694.34931507"
+      },
+      "LI-5903":{
+        lorryRegistrationNumber: "LI-5903",
+        make: "MITSUBISHI",
+        model: "FG83PE6R",
+        yearOfManufacture: "2011",
+        fuelType: "DIESEL",
+        engineNo: "4D34M92685",
+        chassisNo: "FG83PE A20157",
+        licenseNumber:"SG A 5565891",
+        dateOfPurchase:"14/08/2023",
+        purchaseCost:"7,250,000.00",
+        marketValue:"7,200,000.00",
+        transferedDate:"23/01/2024",
+        bookvalue:"382052.6541096"
+      },
+      "LJ-3670":{
+        lorryRegistrationNumber: "LJ-3670",
+        make: "MITSUBISHI",
+        model: "CANTER FG535B4R",
+        yearOfManufacture: "2008",
+        fuelType: "DIESEL",
+        engineNo: "4D32-L99031",
+        chassisNo: "FG535B A40302",
+        licenseNumber:"SG A 5564854",
+        dateOfPurchase:"14/08/2023",
+        purchaseCost:"7,250,000.00",
+        marketValue:"6,500,000.00",
+        transferedDate:"03/05/2024",
+        bookvalue:"382052.6541096"
+      },
+      "LP-4246":{
+        lorryRegistrationNumber: "LP-4246",
+        make: "JMC",
+        model: "Jx1044TC2R",
+        yearOfManufacture: "2024",
+        fuelType: "DIESEL",
+        engineNo: "Jx493ZLQ4R4015390",
+        chassisNo: "LEFYECC23RHNY0069",
+        licenseNumber:"SG A 5569644",
+        dateOfPurchase:"07/02/2024",
+        purchaseCost:"5,805,600.00",
+        marketValue:"6,367,881.00",
+        transferedDate:"28/10/2024",
+        bookvalue:"1399706.3013699"
+      },
+      "LD-7909":{
+        lorryRegistrationNumber: "LD-7909",
+        make: "ISUZU",
+        model: "NPR66LU5GS",
+        yearOfManufacture: "1999",
+        fuelType: "DIESEL",
+        engineNo: "4HF1671639",
+        chassisNo: "NPR66L7430995",
+        licenseNumber:"SG A 5571758",
+        dateOfPurchase:"07/02/2024",
+        purchaseCost:"5,805,600.00",
+        marketValue:"6,500,000.00",
+        transferedDate:"14/08/2024",
+        bookvalue:"1399706.3013699"
+      }
+    };
+
+   function getLorryDetails() {
+      const regNumber = document.getElementById("regNumber").value.trim().toUpperCase();
+      const output = document.getElementById("lorryDetails");
+      const outputContent = document.getElementById("outputContent");
+
+      if (regNumber === "") {
+        output.style.display = "none";
+        return;
+      }
+
+      if (lorryData[regNumber]) {
+        const data = lorryData[regNumber];
+        
+        outputContent.innerHTML = `
+          <table class="output-table">
+            <tr><td>Registration Number:</td><td>${data.lorryRegistrationNumber}</td></tr>
+            <tr><td>Make:</td><td>${data.make}</td></tr>
+            <tr><td>Model:</td><td>${data.model}</td></tr>
+            <tr><td>Year:</td><td>${data.yearOfManufacture}</td></tr>
+            <tr><td>Fuel Type:</td><td>${data.fuelType}</td></tr>
+            <tr><td>Engine No:</td><td>${data.engineNo}</td></tr>
+            <tr><td>Chassis No:</td><td>${data.chassisNo}</td></tr>
+            <tr><td>License Number:</td><td>${data.licenseNumber || 'N/A'}</td></tr>
+            <tr><td>Purchase Date:</td><td>${data.dateOfPurchase || 'N/A'}</td></tr>
+            <tr><td>Purchase Cost:</td><td>${data.purchaseCost || 'N/A'}</td></tr>
+            <tr><td>Market Value:</td><td>${data.marketValue || 'N/A'}</td></tr>
+            <tr><td>Transfer Date:</td><td>${data.transferedDate || 'N/A'}</td></tr>
+            <tr><td>Book Value:</td><td>${data.bookvalue || 'No records available'}</td></tr>
+          </table>
+        `;
+        output.style.display = "block";
+      } else {
+        outputContent.innerHTML = `
+          <div class="no-data">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>No details found for registration number: ${regNumber}</p>
+          </div>
+        `;
+        output.style.display = "block";
+      }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Show the output section when a vehicle is selected
+    document.getElementById('regNumber').addEventListener('change', function() {
+      if (this.value !== "") {
+        document.getElementById('lorryDetails').style.display = 'block';
+      }
+    });
+  </script>
